@@ -1,3 +1,4 @@
+/* General body styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -9,15 +10,17 @@ body {
     min-height: 100vh;
 }
 
+/* Main dashboard container */
 .dashboard {
     width: 90%;
-    max-width: 800px;
-    background: #e9f5eb;
-    border-radius: 16px;
+    max-width: 400px;
+    background: #ffffff;
+    border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
 
+/* Header styles */
 header {
     background-color: #4CAF50;
     color: #fff;
@@ -25,25 +28,37 @@ header {
     text-align: center;
 }
 
-header .header-content {
+.header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px;
 }
 
-header .time {
-    font-size: 28px;
+.time {
+    font-size: 20px;
     font-weight: bold;
 }
 
-header .date {
-    font-size: 14px;
+.date {
+    font-size: 12px;
 }
 
-header .notification span {
+.notification span {
     font-size: 24px;
 }
 
+header h1 {
+    font-size: 20px;
+    margin: 10px 0 5px;
+}
+
+header p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Main content styling */
 main {
     padding: 20px;
 }
@@ -51,24 +66,23 @@ main {
 .summary {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
 .card {
-    background: #fff;
+    flex: 1;
+    background: #f9f9f9;
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
-    flex: 1;
-    margin-right: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .card h2 {
     font-size: 36px;
     color: #4CAF50;
-    margin-bottom: 5px;
+    margin: 0 0 10px;
 }
 
 .card p {
@@ -78,7 +92,7 @@ main {
 
 .status {
     flex: 2;
-    background: #fff;
+    background: #f9f9f9;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -121,114 +135,91 @@ main {
     background: #F44336;
 }
 
-.scan-section {
+/* Center the scan text, file input, and button */
+.upload-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
     text-align: center;
-}
-
-.scan-section h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
 }
 
 .upload-form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 10px;
+    width: 100%;
+    max-width: 300px; /* Adjust the form width */
 }
 
-.upload-form input[type="file"] {
+.upload-form input {
+    width: 100%; /* Make input take full width */
     padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
     border-radius: 6px;
-    font-size: 14px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
 }
 
 .upload-form button {
     background-color: #4CAF50;
-    color: white;
-    border: none;
+    color: #fff;
     padding: 10px 20px;
     border-radius: 6px;
     cursor: pointer;
+    font-size: 14px;
     transition: background-color 0.3s ease;
+    border: none;
 }
 
 .upload-form button:hover {
     background-color: #45a049;
 }
 
+/* Result section styling */
 .result-section {
-    padding: 30px;
-    text-align: center;
-}
-
-.result-box {
-    border: 1px solid #ddd;
-    padding: 25px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-    background-color: #fafafa;
+    margin-top: 20px;
+    text-align: center; /* Centers the text */
 }
 
 .result-section h2 {
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 1.8rem;
-    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 15px;
 }
 
-.result-image {
-    max-width: 100%;
-    max-height: 400px;
-    margin-top: 20px;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+.result-images {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Adds space between the images */
 }
 
-.instruction-text {
-    font-size: 1.1rem;
-    color: #888;
-    margin-top: 20px;
+.image-container {
+    text-align: center;
 }
 
+.image-container img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+/* Footer styles */
 footer {
     background: #4CAF50;
     text-align: center;
     padding: 10px;
-    color: #fff;
+    color: white;
 }
 
-.nav span {
+.footer-btn {
     font-size: 16px;
-}
-
-@media (max-width: 768px) {
-    .dashboard {
-        width: 95%;
-    }
-
-    .upload-section, .result-section {
-        margin-bottom: 20px;
-        padding: 20px;
-    }
-
-    .upload-form input[type="file"] {
-        max-width: 90%;
-    }
-
-    .upload-form button {
-        max-width: 90%;
-    }
-}
-
-@media (max-width: 480px) {
-    .title {
-        font-size: 1.8rem;
-    }
-
-    .upload-section h1 {
-        font-size: 1.5rem;
-    }
+    border: none;
+    cursor: pointer;
+    background: none;
+    color: white;
+    text-decoration: underline;
 }

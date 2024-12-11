@@ -1,19 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mushroom Prediction Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
-</head>
+    <link rel="stylesheet" href="/static/styles/style.css">
+    <script>
+        // Real-time clock function
+        function updateTime() {
+            const now = new Date();
+            const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const date = now.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+            document.querySelector('.time').textContent = time;
+            document.querySelector('.date').textContent = date;
+        }
+        setInterval(updateTime, 1000); // Update time every second
 
-<body>
+        // Function to update prediction counts dynamically
+        function updateCounts(ready, notReady, overdue, totalMushrooms) {
+            document.querySelector('.ready-count').textContent = ready;
+            document.querySelector('.not-ready-count').textContent = notReady;
+            document.querySelector('.overdue-count').textContent = overdue;
+            document.querySelector('.captured-mushrooms-count').textContent = totalMushrooms; // Update the total mushrooms count
+        }
+
+        // Handle file upload and predictions
+        async function handleFileUpload(event) {
+            event.preventDefault(); // Prevent form submission
+            const formData = new FormData(event.target);
+
+            // Fetch prediction results from backend
+            const response = await fetch('/upload', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                updateCounts(data.ready, data.notReady, data.overdue, data.totalMushrooms); // Pass totalMushrooms to update function
+                document.getElementById('original-image').src = data.original_image_url;
+                document.getElementById('output-image').src = data.processed_image_url;
+            } else {
+                alert('Error uploading image. Please try again.');
+            }
+        }
+    </script>
+</head>
+<body onload="updateTime()">
     <div class="dashboard">
         <header>
             <div class="header-content">
-                <div class="time">9:56 AM</div>
-                <div class="date">Friday, December 6, 2024</div>
+                <div class="time">--:--</div>
+                <div class="date">Loading date...</div>
                 <div class="notification">
                     <span>&#128276;</span>
                 </div>
@@ -25,47 +63,46 @@
         <main>
             <div class="summary">
                 <div class="card">
-                    <h2>0</h2>
+                    <h2 class="captured-mushrooms-count">0</h2>
                     <p>Captured Mushrooms</p>
                 </div>
                 <div class="status">
                     <p>Summary</p>
                     <ul>
-                        <li><span class="ready"></span> Ready to Harvest: 0</li>
-                        <li><span class="not-ready"></span> Not Ready: 0</li>
-                        <li><span class="overdue"></span> Overdue: 0</li>
+                        <li><span class="ready"></span> Ready to Harvest: <span class="ready-count">0</span></li>
+                        <li><span class="not-ready"></span> Not Ready: <span class="not-ready-count">0</span></li>
+                        <li><span class="overdue"></span> Overdue: <span class="overdue-count">0</span></li>
                     </ul>
                 </div>
             </div>
 
-            <div class="scan-section">
-                <h2>Scan</h2>
-                <form class="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+            <div class="upload-section">
+                <form class="upload-form" onsubmit="handleFileUpload(event)" enctype="multipart/form-data">
                     <input type="file" name="file" accept="image/*" required>
-                    <button type="submit">Upload & Predict</button>
+                    <button type="submit">Upload and Predict</button>
                 </form>
             </div>
 
-            <!-- Result Section -->
-            <section class="result-section">
-                <div class="result-box">
-                    {% if result_image %}
-                    <h2>Prediction Result</h2>
-                    <img src="{{ url_for('static', filename='results/' + result_image) }}" alt="Prediction Result"
-                        class="result-image">
-                    {% else %}
-                    <p class="instruction-text">Upload an image to see the prediction results.</p>
-                    {% endif %}
+            <div class="result-section">
+                <h2>Result</h2>
+                <div class="result-images">
+                    <div class="image-container">
+                        <p>Original Image</p>
+                        <img src="/static/uploads/placeholder.jpg" alt="Original" id="original-image">
+                    </div>
+                    <div class="image-container">
+                        <p>Processed Output</p>
+                        <img src="/static/results/placeholder.jpg" alt="Output" id="output-image">
+                    </div>
                 </div>
-            </section>
+            </div>
         </main>
 
         <footer>
             <div class="nav">
-                <span>Home</span>
+                <button class="footer-btn">Home</button>
             </div>
         </footer>
     </div>
 </body>
-
 </html>
