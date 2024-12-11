@@ -7,7 +7,7 @@ import os
 app = Flask(__name__)
 
 UPLOAD_FOLDER = './uploads'
-RESULT_FOLDER = './results'
+RESULT_FOLDER = './static/results'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(RESULT_FOLDER, exist_ok=True)
 
@@ -38,16 +38,13 @@ def upload_image():
         # Perform inference using Roboflow
         predictions = get_roboflow_predictions(filepath)
 
-        # Overlay predictions on the image
-        result_path = overlay_predictions(filepath, predictions)
-        return redirect(url_for('display_result', filename=os.path.basename(result_path)))
+        # Overlay predictions on the image and get the result filename
+        result_image = overlay_predictions(filepath, predictions)
 
+        # Pass result_image to the template to show the processed image
+        return render_template('index.html', result_image=result_image, prediction=predictions)
+    
     return redirect(url_for('home'))
-
-@app.route('/result/<filename>')
-def display_result(filename):
-    result_path = os.path.join(app.config['RESULT_FOLDER'], filename)
-    return send_file(result_path, mimetype='image/png')
 
 def get_roboflow_predictions(image_path):
     with open(image_path, "rb") as image_file:
@@ -85,9 +82,13 @@ def overlay_predictions(image_path, predictions):
 
     # Composite overlay onto the image
     result = Image.alpha_composite(image, overlay)
-    result_path = os.path.join(app.config['RESULT_FOLDER'], os.path.basename(image_path))
+    
+    # Save the result image in the results folder
+    result_filename = os.path.basename(image_path)
+    result_path = os.path.join(app.config['RESULT_FOLDER'], result_filename)
     result.save(result_path, format="PNG")
-    return result_path
+    
+    return result_filename  # Return the filename, not the full path
 
 if __name__ == "__main__":
     app.run(debug=True)

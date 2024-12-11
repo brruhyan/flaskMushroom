@@ -2,92 +2,50 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #f5f5f5;
-    min-height: 100vh;
 }
 
 .container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 90%;
-    max-width: 1200px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    align-items: flex-start;
     padding: 20px;
-    margin: 20px auto;
 }
 
 .upload-section,
 .result-section {
+    box-sizing: border-box;
+}
+
+.upload-section {
     width: 45%;
     padding: 20px;
 }
 
-h1 {
-    text-align: center;
-    color: #333333;
-    margin-bottom: 20px;
+.result-section {
+    width: 50%;
+    padding: 20px;
+    margin-left: 5%;
 }
 
-.upload-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.upload-form input[type="file"] {
-    margin: 10px 0;
-    padding: 5px;
-}
-
-.upload-form button {
+button {
     padding: 10px 20px;
     font-size: 16px;
-    color: #ffffff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
     cursor: pointer;
 }
 
-.upload-form button:hover {
-    background-color: #0056b3;
-}
-
-.image-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 15px;
-}
-
-.result-section {
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-}
-
-.result-image {
+img.result-image {
+    width: 100%;
+    height: auto;
     max-width: 100%;
-    max-height: 400px;
+    border: 1px solid #ddd;
     margin-top: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .upload-section,
-    .result-section {
-        width: 100%;
-    }
+pre {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
