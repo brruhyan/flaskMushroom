@@ -95,7 +95,7 @@ body {
 
 @media (max-width: 768px) {
     .container {
-        flex-direction: column; /* Stack the columns vertically on smaller screens */
+        flex-direction: column; 
         width: 100%;
         padding: 20px;
     }
