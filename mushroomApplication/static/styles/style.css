@@ -10,28 +10,29 @@ body {
 }
 
 .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;  /* Align items to the start of the container */
-    width: 90%; /* Reducing the width to provide space around the content */
-    max-width: 1200px;
+    width: 90%;
+    max-width: 800px;
     background-color: #ffffff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 30px;
-    min-height: 400px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    border-radius: 12px; /* Smoothened corners */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .upload-section {
-    width: 45%; /* Takes up 45% of the container */
-    padding: 20px;
-    border-right: 2px solid #ddd; /* Adds a separator line between the columns */
+    background: linear-gradient(to bottom, #f9f9f9, #ffffff); /* Light gradient */
+    border-bottom: 2px solid #eee; /* Softer border */
+    padding: 30px;
     text-align: center;
 }
 
 .upload-section h1 {
     color: #333;
     margin-bottom: 20px;
+    font-size: 2rem; /* Larger font for emphasis */
+    font-weight: bold;
 }
 
 .upload-form {
@@ -42,67 +43,93 @@ body {
 
 .upload-form input[type="file"] {
     margin: 10px 0;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 6px;
     width: 100%;
     max-width: 300px;
+    font-size: 1rem;
 }
 
 .upload-form button {
-    padding: 10px 20px;
+    padding: 12px 25px;
     font-size: 16px;
     color: #fff;
     background-color: #007bff;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     width: 100%;
     max-width: 300px;
-    margin-top: 10px;
+    margin-top: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    transition: transform 0.2s ease, background-color 0.2s ease; /* Smooth transitions */
 }
 
 .upload-form button:hover {
-    background-color: #0056b3;
+    transform: translateY(-2px); /* Lift effect */
+    background-color: #0056b3; /* Darker blue on hover */
 }
 
 .result-section {
-    width: 45%; /* Takes up 45% of the container */
-    padding: 20px;
+    padding: 30px;
     text-align: center;
 }
 
 .result-box {
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    border: 1px solid #ddd; /* Thin border for structure */
+    padding: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 12px; /* Smoothened edges */
+    background-color: #fafafa; /* Softer background color */
 }
 
 .result-section h2 {
     color: #333;
     margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-weight: 600;
 }
 
 .result-image {
     max-width: 100%;
     max-height: 400px;
     margin-top: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 12px; /* Smooth edges for the image */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Soft shadow effect */
+}
+
+.instruction-text {
+    font-size: 1.1rem;
+    color: #888;
+    margin-top: 20px;
 }
 
 @media (max-width: 768px) {
     .container {
-        flex-direction: column; 
-        width: 100%;
-        padding: 20px;
+        width: 95%; /* A little more flexibility on smaller screens */
     }
 
-    .upload-section,
-    .result-section {
-        width: 100%;
-        margin-bottom: 20px;
+    .upload-section, .result-section {
+        margin-bottom: 20px; /* Adds breathing room */
+        padding: 20px; /* Reduced padding on smaller screens */
+    }
+
+    .upload-form input[type="file"] {
+        max-width: 90%; /* Adjust width for mobile */
+    }
+
+    .upload-form button {
+        max-width: 90%; /* Adjust button for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.8rem; /* Slightly smaller title on smaller screens */
+    }
+
+    .upload-section h1 {
+        font-size: 1.5rem; /* Smaller font size on very small screens */
     }
 }
