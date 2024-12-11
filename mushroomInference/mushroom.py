@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, send_file
+from flask import Flask, render_template, request, redirect, url_for
 from werkzeug.utils import secure_filename
 from PIL import Image, ImageDraw, ImageFont
 import requests
@@ -7,14 +7,14 @@ import os
 app = Flask(__name__)
 
 UPLOAD_FOLDER = './uploads'
-RESULT_FOLDER = './static/results'
+RESULT_FOLDER = './results'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(RESULT_FOLDER, exist_ok=True)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['RESULT_FOLDER'] = RESULT_FOLDER
 
-ROBOFLOW_API_URL = "https://detect.roboflow.com/pd-recent-dataset/2"
+ROBOFLOW_API_URL = "https://outline.roboflow.com/final-data-set-zs3lw/2"
 ROBOFLOW_API_KEY = "5yNSbYmPfQArT0CrClDY"
 
 @app.route('/')
@@ -38,12 +38,13 @@ def upload_image():
         # Perform inference using Roboflow
         predictions = get_roboflow_predictions(filepath)
 
-        # Overlay predictions on the image and get the result filename
-        result_image = overlay_predictions(filepath, predictions)
+        # Overlay predictions on the image
+        result_path = overlay_predictions(filepath, predictions)
+        result_image = os.path.basename(result_path)
 
-        # Pass result_image to the template to show the processed image
-        return render_template('index.html', result_image=result_image, prediction=predictions)
-    
+        # Pass the result image name to the template
+        return render_template('index.html', result_image=result_image)
+
     return redirect(url_for('home'))
 
 def get_roboflow_predictions(image_path):
@@ -82,13 +83,9 @@ def overlay_predictions(image_path, predictions):
 
     # Composite overlay onto the image
     result = Image.alpha_composite(image, overlay)
-    
-    # Save the result image in the results folder
-    result_filename = os.path.basename(image_path)
-    result_path = os.path.join(app.config['RESULT_FOLDER'], result_filename)
+    result_path = os.path.join(app.config['RESULT_FOLDER'], os.path.basename(image_path))
     result.save(result_path, format="PNG")
-    
-    return result_filename  # Return the filename, not the full path
+    return result_path
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -2,50 +2,107 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    min-height: 100vh;
 }
 
 .container {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 20px;
-}
-
-.upload-section,
-.result-section {
-    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: flex-start;  /* Align items to the start of the container */
+    width: 90%; /* Reducing the width to provide space around the content */
+    max-width: 1200px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 30px;
+    min-height: 400px;
 }
 
 .upload-section {
-    width: 45%;
+    width: 45%; /* Takes up 45% of the container */
     padding: 20px;
+    border-right: 2px solid #ddd; /* Adds a separator line between the columns */
+    text-align: center;
+}
+
+.upload-section h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upload-form input[type="file"] {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.upload-form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 10px;
+}
+
+.upload-form button:hover {
+    background-color: #0056b3;
 }
 
 .result-section {
-    width: 50%;
+    width: 45%; /* Takes up 45% of the container */
     padding: 20px;
-    margin-left: 5%;
+    text-align: center;
 }
 
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-img.result-image {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
+.result-box {
     border: 1px solid #ddd;
-    margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
 }
 
-pre {
-    background-color: #f4f4f4;
-    padding: 20px;
-    border-radius: 5px;
-    font-size: 14px;
-    white-space: pre-wrap;
-    word-wrap: break-word;
+.result-section h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.result-image {
+    max-width: 100%;
+    max-height: 400px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack the columns vertically on smaller screens */
+        width: 100%;
+        padding: 20px;
+    }
+
+    .upload-section,
+    .result-section {
+        width: 100%;
+        margin-bottom: 20px;
+    }
 }
