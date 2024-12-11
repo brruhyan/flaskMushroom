@@ -77,12 +77,18 @@ main {
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .card h2 {
     font-size: 36px;
     color: #4CAF50;
-    margin: 0 0 10px;
+    margin: 0;
+    display: inline-block;
+    text-align: center;
+    line-height: 1.5; /* Ensures vertical centering */
 }
 
 .card p {
@@ -110,7 +116,7 @@ main {
 
 .status ul li {
     display: flex;
-    align-items: center;
+    justify-content: space-between; /* Align text and numbers on opposite sides */
     margin-bottom: 5px;
     font-size: 14px;
 }
