@@ -2,73 +2,161 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f5f5f5;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f5f5f5;
     min-height: 100vh;
 }
 
-.container {
+.dashboard {
     width: 90%;
     max-width: 800px;
-    background-color: #ffffff;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Softer shadow */
-    border-radius: 12px; /* Smoothened corners */
+    background: #e9f5eb;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
-.upload-section {
-    background: linear-gradient(to bottom, #f9f9f9, #ffffff); /* Light gradient */
-    border-bottom: 2px solid #eee; /* Softer border */
-    padding: 30px;
+header {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 20px;
     text-align: center;
 }
 
-.upload-section h1 {
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 2rem; /* Larger font for emphasis */
+header .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .time {
+    font-size: 28px;
     font-weight: bold;
+}
+
+header .date {
+    font-size: 14px;
+}
+
+header .notification span {
+    font-size: 24px;
+}
+
+main {
+    padding: 20px;
+}
+
+.summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1;
+    margin-right: 10px;
+}
+
+.card h2 {
+    font-size: 36px;
+    color: #4CAF50;
+    margin-bottom: 5px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #666;
+}
+
+.status {
+    flex: 2;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status p {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.status ul {
+    list-style: none;
+    padding: 0;
+}
+
+.status ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.status ul li span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.ready {
+    background: #4CAF50;
+}
+
+.not-ready {
+    background: #FFC107;
+}
+
+.overdue {
+    background: #F44336;
+}
+
+.scan-section {
+    text-align: center;
+}
+
+.scan-section h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
 }
 
 .upload-form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 10px;
 }
 
 .upload-form input[type="file"] {
-    margin: 10px 0;
-    padding: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 6px;
-    width: 100%;
-    max-width: 300px;
-    font-size: 1rem;
+    font-size: 14px;
 }
 
 .upload-form button {
-    padding: 12px 25px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #007bff;
+    background-color: #4CAF50;
+    color: white;
     border: none;
+    padding: 10px 20px;
     border-radius: 6px;
     cursor: pointer;
-    width: 100%;
-    max-width: 300px;
-    margin-top: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    transition: transform 0.2s ease, background-color 0.2s ease; /* Smooth transitions */
+    transition: background-color 0.3s ease;
 }
 
 .upload-form button:hover {
-    transform: translateY(-2px); /* Lift effect */
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #45a049;
 }
 
 .result-section {
@@ -77,11 +165,11 @@ body {
 }
 
 .result-box {
-    border: 1px solid #ddd; /* Thin border for structure */
+    border: 1px solid #ddd;
     padding: 25px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    border-radius: 12px; /* Smoothened edges */
-    background-color: #fafafa; /* Softer background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    background-color: #fafafa;
 }
 
 .result-section h2 {
@@ -95,8 +183,8 @@ body {
     max-width: 100%;
     max-height: 400px;
     margin-top: 20px;
-    border-radius: 12px; /* Smooth edges for the image */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Soft shadow effect */
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .instruction-text {
@@ -105,31 +193,42 @@ body {
     margin-top: 20px;
 }
 
+footer {
+    background: #4CAF50;
+    text-align: center;
+    padding: 10px;
+    color: #fff;
+}
+
+.nav span {
+    font-size: 16px;
+}
+
 @media (max-width: 768px) {
-    .container {
-        width: 95%; /* A little more flexibility on smaller screens */
+    .dashboard {
+        width: 95%;
     }
 
     .upload-section, .result-section {
-        margin-bottom: 20px; /* Adds breathing room */
-        padding: 20px; /* Reduced padding on smaller screens */
+        margin-bottom: 20px;
+        padding: 20px;
     }
 
     .upload-form input[type="file"] {
-        max-width: 90%; /* Adjust width for mobile */
+        max-width: 90%;
     }
 
     .upload-form button {
-        max-width: 90%; /* Adjust button for smaller screens */
+        max-width: 90%;
     }
 }
 
 @media (max-width: 480px) {
     .title {
-        font-size: 1.8rem; /* Slightly smaller title on smaller screens */
+        font-size: 1.8rem;
     }
 
     .upload-section h1 {
-        font-size: 1.5rem; /* Smaller font size on very small screens */
+        font-size: 1.5rem;
     }
 }

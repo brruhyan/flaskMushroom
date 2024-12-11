@@ -4,38 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mushroom Prediction</title>
+    <title>Mushroom Prediction Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
 </head>
 
 <body>
-    <div class="container">
-        <!-- Title Section -->
-        <header class="upload-section">
-            <h1>Mushroom Prediction</h1>
-            <p>Upload an image to predict the mushroom type.</p>
+    <div class="dashboard">
+        <header>
+            <div class="header-content">
+                <div class="time">9:56 AM</div>
+                <div class="date">Friday, December 6, 2024</div>
+                <div class="notification">
+                    <span>&#128276;</span>
+                </div>
+            </div>
+            <h1>Good morning, User!</h1>
+            <p>Welcome to your farm.</p>
         </header>
 
-        <!-- Upload Section -->
-        <section class="upload-section">
-            <form class="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
-                <input type="file" name="file" accept="image/*" required>
-                <button type="submit">Upload & Predict</button>
-            </form>
-        </section>
-
-        <!-- Result Section -->
-        <section class="result-section">
-            <div class="result-box">
-                {% if result_image %}
-                <h2>Prediction Result</h2>
-                <img src="{{ url_for('static', filename='results/' + result_image) }}" alt="Prediction Result"
-                    class="result-image">
-                {% else %}
-                <p class="instruction-text">Upload an image to see the prediction results.</p>
-                {% endif %}
+        <main>
+            <div class="summary">
+                <div class="card">
+                    <h2>0</h2>
+                    <p>Captured Mushrooms</p>
+                </div>
+                <div class="status">
+                    <p>Summary</p>
+                    <ul>
+                        <li><span class="ready"></span> Ready to Harvest: 0</li>
+                        <li><span class="not-ready"></span> Not Ready: 0</li>
+                        <li><span class="overdue"></span> Overdue: 0</li>
+                    </ul>
+                </div>
             </div>
-        </section>
+
+            <div class="scan-section">
+                <h2>Scan</h2>
+                <form class="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="file" accept="image/*" required>
+                    <button type="submit">Upload & Predict</button>
+                </form>
+            </div>
+
+            <!-- Result Section -->
+            <section class="result-section">
+                <div class="result-box">
+                    {% if result_image %}
+                    <h2>Prediction Result</h2>
+                    <img src="{{ url_for('static', filename='results/' + result_image) }}" alt="Prediction Result"
+                        class="result-image">
+                    {% else %}
+                    <p class="instruction-text">Upload an image to see the prediction results.</p>
+                    {% endif %}
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="nav">
+                <span>Home</span>
+            </div>
+        </footer>
     </div>
 </body>
 
