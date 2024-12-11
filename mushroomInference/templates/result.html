@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link href="{{ url_for('static', filename='styles/style.css') }}" rel="stylesheet" />
+</head>
+<body>
+    <h1>Prediction Result</h1>
+    <img src="{{ url_for('static', filename=image_url.split('static/')[-1]) }}" alt="Uploaded Mushroom" style="max-width: 500px;">
+    <h2>Prediction:</h2>
+    <pre>{{ prediction }}</pre>
+    <a href="{{ url_for('home') }}">Go Back</a>
+</body>
+</html>

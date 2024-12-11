@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mushroom Prediction Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Upload Section -->
+        <div class="upload-section">
+            <h1>Mushroom Prediction Application</h1>
+            <form class="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" accept="image/*" required>
+                <button type="submit">Upload and Predict</button>
+            </form>
+        </div>
+        
+        <!-- Result Section -->
+        <div class="result-section">
+            <h2>Prediction Results</h2>
+            <p>Upload an image to see the prediction results.</p>
+
+            {% if result_image %}
+                <img src="{{ url_for('result', filename=result_image) }}" alt="Prediction Result" class="result-image">
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
